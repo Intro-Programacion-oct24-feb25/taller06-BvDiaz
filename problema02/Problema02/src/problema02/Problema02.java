@@ -21,6 +21,7 @@ public class Problema02 {
         double costo;
         double porcentaje;
         double peaje = 0;
+        boolean tipoValido = true;
 
         System.out.println("Ingrese su nombre y apellido");
         nombre = entrada.nextLine();
@@ -32,40 +33,64 @@ public class Problema02 {
         tipo = tipo.toLowerCase();
 
         switch (tipo) {
+            case "vehículo liviano particular":
             case "vehículo liviano":
             case "liviano":
+            case "1":
                 tipo = "vehículo liviano particular";
                 porcentaje = (costo * 0.01) / 100;
                 peaje = porcentaje + 2;
                 break;
 
-            case "vehiculo grande":
+            case "vehículo grande particular":
+            case "vehículo grande":
             case "grande":
+            case "2":
                 tipo = "vehículo grande particular";
                 porcentaje = (costo * 0.02) / 100;
                 peaje = porcentaje + 2.5;
                 break;
 
-            case "vehiculo taxi":
             case "taxi":
-                tipo = "vehiculo de transporte publico";
-                porcentaje = (costo * 0.03) / 100;
+            case "vehículo taxi":
+            case "3":
+                tipo = "taxi";
+                porcentaje = (costo * 0.04) / 100;
                 peaje = porcentaje + 1.5;
                 break;
 
-            case "vehiculo bus":
             case "bus urbano":
             case "bus":
-                tipo = "vehiculo de transporte publico";
-                porcentaje = (costo * 0.04) / 100;
+            case "vehículo bus":
+            case "4":
+                tipo = "bus urbano";
+                porcentaje = (costo * 0.05) / 100;
                 peaje = porcentaje + 2.2;
                 break;
-        }
-        System.out.printf("Peaje: %s\n\t"
-                + "Propietario: %s\n"
-                + "Tipo: %s\n\t"
-                + "Valor: %.2f\n\t"
-                + "Peaje: %.2f\n", lugar, nombre, tipo, costo, peaje);
-    }
 
+            default:
+                tipoValido = false;
+
+                System.out.printf("Tipo de vehículo no válido.\nTipos válidos:\n"
+                        + "1. Vehículo liviano particular\n"
+                        + "   - Vehículo liviano\n"
+                        + "   - Liviano\n"
+                        + "2. Vehículo grande particular\n"
+                        + "   - Vehículo grande\n"
+                        + "   - Grande\n"
+                        + "3. Taxi\n"
+                        + "   - Vehículo taxi\n"
+                        + "4. Bus urbano\n"
+                        + "   - Bus\n"
+                        + "   - Vehículo bus\n");
+        }
+        if (tipoValido == true) {
+            System.out.printf("Peaje: %s\n\t"
+                    + "Propietario: %s\n"
+                    + "Tipo: %s\n\t"
+                    + "Valor: %.2f\n\t"
+                    + "Peaje: %.2f\n", lugar, nombre, tipo, costo, peaje);
+        }
+
+    }
 }
